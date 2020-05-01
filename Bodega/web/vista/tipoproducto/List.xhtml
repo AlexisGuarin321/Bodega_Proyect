@@ -3,52 +3,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListTipoproductoTitle}"></h:outputText>
+            <h:outputText value="#{bundle.AppName}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListTipoproductoEmpty}" rendered="#{tipoproductoController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{tipoproductoController.items.rowCount > 0}">
-                    <h:outputText value="#{tipoproductoController.pagination.pageFirstItem + 1}..#{tipoproductoController.pagination.pageLastItem + 1}/#{tipoproductoController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{tipoproductoController.previous}" value="#{bundle.Previous} #{tipoproductoController.pagination.pageSize}" rendered="#{tipoproductoController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{tipoproductoController.next}" value="#{bundle.Next} #{tipoproductoController.pagination.pageSize}" rendered="#{tipoproductoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{tipoproductoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTipoproductoTitle_idTipoProducto}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTipoProducto}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTipoproductoTitle_genero}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.genero}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{tipoproductoController.prepareView}" value="#{bundle.ListTipoproductoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tipoproductoController.prepareEdit}" value="#{bundle.ListTipoproductoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tipoproductoController.destroy}" value="#{bundle.ListTipoproductoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{tipoproductoController.prepareCreate}" value="#{bundle.ListTipoproductoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTipoproductoIndexLink}"/>
+            <h:form>
+                <div align="center">
+                    <div class="container text-center">   
+                        <div class="row">
+                            <div class="col-sm-3 well">
+                                <p:panel header="#{bundle.ListTipoproductoTitle_tabla}">
+                                    <div align="center">
+                                        <p:dataTable id="lalmeida"  reflow="true" value="#{tipoproductoController.items}" var="item" emptyMessage=" " selectionMode="single"  paginator="true"  rowKey="#{item.idTipoProducto}" rows="20"  rowsPerPageTemplate="20,50,100">
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTipoproductoTitle_idTipoProducto}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.idTipoProducto}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTipoproductoTitle_genero}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.genero}"/>
+                                            </p:column>
+
+
+                                            <f:facet name="footer">
+                                                <div align="center">
+                                                    <p:commandButton style="max-width: 200px;" id="editButtonR"   icon="ui-icon-pencil" process="@all" styleClass="button" ajax="false" action="#{tipoproductoController.prepareCreate}" value="#{bundle.ListTipoproductoCreateLink}"/>
+                                                </div>
+                                            </f:facet>
+                                            <f:facet name="header">
+                                                <div align="center">
+                                                    <p:commandButton style="max-width: 200px;" id="editButtonRe"   icon="ui-icon-pencil" process="@all" styleClass="button" ajax="false" action="#{tipoproductoController.prepareCreate}" value="#{bundle.ListTipoproductoCreateLink}"/>
+                                                </div>
+                                            </f:facet>
+                                        </p:dataTable>
+                                    </div>
+                                </p:panel>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
