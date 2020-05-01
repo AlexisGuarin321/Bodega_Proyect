@@ -3,6 +3,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.AppName}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <div align="center">
+                    <div class="container text-center">   
+                        <div class="row">
+                            <div class="col-sm-3 well">
+                                <p:panel header="#{bundle.ListTallasHombreInferiorTitle_tabla}">
+                                    <div align="center">
+                                        <p:dataTable id="lalmeida"  reflow="true" value="#{tallasHombreInferiorController.items}" var="item" emptyMessage=" " selectionMode="single"  paginator="true"  rowKey="#{item.idTallaHombreInferior}" rows="20"  rowsPerPageTemplate="20,50,100">
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_idTallaHombreInferior}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.idTallaHombreInferior}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_tallaNumerica}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.tallaNumerica}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_contornoCintura}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.contornoCintura}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_contornoCadera}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.contornoCadera}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_muslo}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.muslo}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_idTalla}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.idTalla}"/>
+                                            </p:column>
+
+
+                                            <f:facet name="footer">
+                                                <div align="center">
+                                                    <p:commandButton style="max-width: 200px;" id="editButtonR"   icon="ui-icon-pencil" process="@all" styleClass="button" ajax="false" action="#{tallasHombreInferiorController.prepareCreate}" value="#{bundle.ListTallasHombreInferiorCreateLink}"/>
+                                                </div>
+                                            </f:facet>
+                                            <f:facet name="header">
+                                                <div align="center">
+                                                    <p:commandButton style="max-width: 200px;" id="editButtonRe"   icon="ui-icon-pencil" process="@all" styleClass="button" ajax="false" action="#{tallasHombreInferiorController.prepareCreate}" value="#{bundle.ListTallasHombreInferiorCreateLink}"/>
+                                                </div>
+                                            </f:facet>
+                                        </p:dataTable>
+                                    </div>
+                                </p:panel>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
+
+
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
@@ -20,42 +106,7 @@
                     <h:commandLink action="#{tallasHombreInferiorController.previous}" value="#{bundle.Previous} #{tallasHombreInferiorController.pagination.pageSize}" rendered="#{tallasHombreInferiorController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{tallasHombreInferiorController.next}" value="#{bundle.Next} #{tallasHombreInferiorController.pagination.pageSize}" rendered="#{tallasHombreInferiorController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{tallasHombreInferiorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_idTallaHombreInferior}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTallaHombreInferior}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_tallaNumerica}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tallaNumerica}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_contornoCintura}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.contornoCintura}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_contornoCadera}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.contornoCadera}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_muslo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.muslo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasHombreInferiorTitle_idTalla}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTalla}"/>
-                        </h:column>
+
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
