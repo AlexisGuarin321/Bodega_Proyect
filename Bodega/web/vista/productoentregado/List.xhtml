@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductoentregadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProductoentregadoEmpty}" rendered="#{productoentregadoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{productoentregadoController.items.rowCount > 0}">
+                    <h:outputText value="#{productoentregadoController.pagination.pageFirstItem + 1}..#{productoentregadoController.pagination.pageLastItem + 1}/#{productoentregadoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productoentregadoController.previous}" value="#{bundle.Previous} #{productoentregadoController.pagination.pageSize}" rendered="#{productoentregadoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productoentregadoController.next}" value="#{bundle.Next} #{productoentregadoController.pagination.pageSize}" rendered="#{productoentregadoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productoentregadoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_idProductoEntregado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProductoEntregado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_fechaEntrega}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEntrega}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_ref}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ref}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_iva}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iva}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_valorSubtotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorSubtotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_valorTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_idProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoentregadoTitle_idTipoProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productoentregadoController.prepareView}" value="#{bundle.ListProductoentregadoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productoentregadoController.prepareEdit}" value="#{bundle.ListProductoentregadoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productoentregadoController.destroy}" value="#{bundle.ListProductoentregadoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{productoentregadoController.prepareCreate}" value="#{bundle.ListProductoentregadoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProductoentregadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

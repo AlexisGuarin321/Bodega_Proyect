@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductosresibidosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_idProductoResibido}"/>
+                    <h:outputText value="#{productosresibidosController.selected.idProductoResibido}" title="#{bundle.ViewProductosresibidosTitle_idProductoResibido}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_fechaResivido}"/>
+                    <h:outputText value="#{productosresibidosController.selected.fechaResivido}" title="#{bundle.ViewProductosresibidosTitle_fechaResivido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_ref}"/>
+                    <h:outputText value="#{productosresibidosController.selected.ref}" title="#{bundle.ViewProductosresibidosTitle_ref}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_cantidad}"/>
+                    <h:outputText value="#{productosresibidosController.selected.cantidad}" title="#{bundle.ViewProductosresibidosTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_valorUnidad}"/>
+                    <h:outputText value="#{productosresibidosController.selected.valorUnidad}" title="#{bundle.ViewProductosresibidosTitle_valorUnidad}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_valorTotal}"/>
+                    <h:outputText value="#{productosresibidosController.selected.valorTotal}" title="#{bundle.ViewProductosresibidosTitle_valorTotal}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_idProducto}"/>
+                    <h:outputText value="#{productosresibidosController.selected.idProducto}" title="#{bundle.ViewProductosresibidosTitle_idProducto}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_idProvedor}"/>
+                    <h:outputText value="#{productosresibidosController.selected.idProvedor}" title="#{bundle.ViewProductosresibidosTitle_idProvedor}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_idTalla}"/>
+                    <h:outputText value="#{productosresibidosController.selected.idTalla}" title="#{bundle.ViewProductosresibidosTitle_idTalla}"/>
+                    <h:outputText value="#{bundle.ViewProductosresibidosLabel_idTipoProducto}"/>
+                    <h:outputText value="#{productosresibidosController.selected.idTipoProducto}" title="#{bundle.ViewProductosresibidosTitle_idTipoProducto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productosresibidosController.destroyAndView}" value="#{bundle.ViewProductosresibidosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProductosresibidosEditLink}"/>
+                <br />
+                <h:commandLink action="#{productosresibidosController.prepareCreate}" value="#{bundle.ViewProductosresibidosCreateLink}" />
+                <br />
+                <h:commandLink action="#{productosresibidosController.prepareList}" value="#{bundle.ViewProductosresibidosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProductosresibidosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

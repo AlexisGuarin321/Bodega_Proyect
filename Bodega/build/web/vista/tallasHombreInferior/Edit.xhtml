@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTallasHombreInferiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTallasHombreInferiorLabel_idTallaHombreInferior}" for="idTallaHombreInferior" />
+                    <h:inputText id="idTallaHombreInferior" value="#{tallasHombreInferiorController.selected.idTallaHombreInferior}" title="#{bundle.EditTallasHombreInferiorTitle_idTallaHombreInferior}" required="true" requiredMessage="#{bundle.EditTallasHombreInferiorRequiredMessage_idTallaHombreInferior}"/>
+                    <h:outputLabel value="#{bundle.EditTallasHombreInferiorLabel_tallaNumerica}" for="tallaNumerica" />
+                    <h:inputText id="tallaNumerica" value="#{tallasHombreInferiorController.selected.tallaNumerica}" title="#{bundle.EditTallasHombreInferiorTitle_tallaNumerica}" required="true" requiredMessage="#{bundle.EditTallasHombreInferiorRequiredMessage_tallaNumerica}"/>
+                    <h:outputLabel value="#{bundle.EditTallasHombreInferiorLabel_contornoCintura}" for="contornoCintura" />
+                    <h:inputText id="contornoCintura" value="#{tallasHombreInferiorController.selected.contornoCintura}" title="#{bundle.EditTallasHombreInferiorTitle_contornoCintura}" required="true" requiredMessage="#{bundle.EditTallasHombreInferiorRequiredMessage_contornoCintura}"/>
+                    <h:outputLabel value="#{bundle.EditTallasHombreInferiorLabel_contornoCadera}" for="contornoCadera" />
+                    <h:inputText id="contornoCadera" value="#{tallasHombreInferiorController.selected.contornoCadera}" title="#{bundle.EditTallasHombreInferiorTitle_contornoCadera}" required="true" requiredMessage="#{bundle.EditTallasHombreInferiorRequiredMessage_contornoCadera}"/>
+                    <h:outputLabel value="#{bundle.EditTallasHombreInferiorLabel_muslo}" for="muslo" />
+                    <h:inputText id="muslo" value="#{tallasHombreInferiorController.selected.muslo}" title="#{bundle.EditTallasHombreInferiorTitle_muslo}" required="true" requiredMessage="#{bundle.EditTallasHombreInferiorRequiredMessage_muslo}"/>
+                    <h:outputLabel value="#{bundle.EditTallasHombreInferiorLabel_idTalla}" for="idTalla" />
+                    <h:inputText id="idTalla" value="#{tallasHombreInferiorController.selected.idTalla}" title="#{bundle.EditTallasHombreInferiorTitle_idTalla}" required="true" requiredMessage="#{bundle.EditTallasHombreInferiorRequiredMessage_idTalla}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tallasHombreInferiorController.update}" value="#{bundle.EditTallasHombreInferiorSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTallasHombreInferiorViewLink}"/>
+                <br />
+                <h:commandLink action="#{tallasHombreInferiorController.prepareList}" value="#{bundle.EditTallasHombreInferiorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTallasHombreInferiorIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

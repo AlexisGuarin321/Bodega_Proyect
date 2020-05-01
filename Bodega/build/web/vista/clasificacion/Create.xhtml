@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClasificacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClasificacionLabel_idClasificacion}" for="idClasificacion" />
+                    <h:inputText id="idClasificacion" value="#{clasificacionController.selected.idClasificacion}" title="#{bundle.CreateClasificacionTitle_idClasificacion}" required="true" requiredMessage="#{bundle.CreateClasificacionRequiredMessage_idClasificacion}"/>
+                    <h:outputLabel value="#{bundle.CreateClasificacionLabel_nit}" for="nit" />
+                    <h:inputText id="nit" value="#{clasificacionController.selected.nit}" title="#{bundle.CreateClasificacionTitle_nit}" required="true" requiredMessage="#{bundle.CreateClasificacionRequiredMessage_nit}"/>
+                    <h:outputLabel value="#{bundle.CreateClasificacionLabel_rol}" for="rol" />
+                    <h:inputText id="rol" value="#{clasificacionController.selected.rol}" title="#{bundle.CreateClasificacionTitle_rol}" required="true" requiredMessage="#{bundle.CreateClasificacionRequiredMessage_rol}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clasificacionController.create}" value="#{bundle.CreateClasificacionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clasificacionController.prepareList}" value="#{bundle.CreateClasificacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClasificacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

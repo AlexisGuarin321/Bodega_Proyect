@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTallasMujerInferiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTallasMujerInferiorLabel_idTallaMujerInferior}"/>
+                    <h:outputText value="#{tallasMujerInferiorController.selected.idTallaMujerInferior}" title="#{bundle.ViewTallasMujerInferiorTitle_idTallaMujerInferior}"/>
+                    <h:outputText value="#{bundle.ViewTallasMujerInferiorLabel_tallaNumerica}"/>
+                    <h:outputText value="#{tallasMujerInferiorController.selected.tallaNumerica}" title="#{bundle.ViewTallasMujerInferiorTitle_tallaNumerica}"/>
+                    <h:outputText value="#{bundle.ViewTallasMujerInferiorLabel_contornoCintura}"/>
+                    <h:outputText value="#{tallasMujerInferiorController.selected.contornoCintura}" title="#{bundle.ViewTallasMujerInferiorTitle_contornoCintura}"/>
+                    <h:outputText value="#{bundle.ViewTallasMujerInferiorLabel_contornoCadera}"/>
+                    <h:outputText value="#{tallasMujerInferiorController.selected.contornoCadera}" title="#{bundle.ViewTallasMujerInferiorTitle_contornoCadera}"/>
+                    <h:outputText value="#{bundle.ViewTallasMujerInferiorLabel_muslo}"/>
+                    <h:outputText value="#{tallasMujerInferiorController.selected.muslo}" title="#{bundle.ViewTallasMujerInferiorTitle_muslo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tallasMujerInferiorController.destroyAndView}" value="#{bundle.ViewTallasMujerInferiorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTallasMujerInferiorEditLink}"/>
+                <br />
+                <h:commandLink action="#{tallasMujerInferiorController.prepareCreate}" value="#{bundle.ViewTallasMujerInferiorCreateLink}" />
+                <br />
+                <h:commandLink action="#{tallasMujerInferiorController.prepareList}" value="#{bundle.ViewTallasMujerInferiorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTallasMujerInferiorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

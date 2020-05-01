@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTallasNiñoInferiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTallasNiñoInferiorLabel_idTallaNiñoInferior}"/>
+                    <h:outputText value="#{tallasNiñoInferiorController.selected.idTallaNiñoInferior}" title="#{bundle.ViewTallasNiñoInferiorTitle_idTallaNiñoInferior}"/>
+                    <h:outputText value="#{bundle.ViewTallasNiñoInferiorLabel_tallaNumerica}"/>
+                    <h:outputText value="#{tallasNiñoInferiorController.selected.tallaNumerica}" title="#{bundle.ViewTallasNiñoInferiorTitle_tallaNumerica}"/>
+                    <h:outputText value="#{bundle.ViewTallasNiñoInferiorLabel_contornoCintura}"/>
+                    <h:outputText value="#{tallasNiñoInferiorController.selected.contornoCintura}" title="#{bundle.ViewTallasNiñoInferiorTitle_contornoCintura}"/>
+                    <h:outputText value="#{bundle.ViewTallasNiñoInferiorLabel_contornoCadera}"/>
+                    <h:outputText value="#{tallasNiñoInferiorController.selected.contornoCadera}" title="#{bundle.ViewTallasNiñoInferiorTitle_contornoCadera}"/>
+                    <h:outputText value="#{bundle.ViewTallasNiñoInferiorLabel_muslo}"/>
+                    <h:outputText value="#{tallasNiñoInferiorController.selected.muslo}" title="#{bundle.ViewTallasNiñoInferiorTitle_muslo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tallasNiñoInferiorController.destroyAndView}" value="#{bundle.ViewTallasNiñoInferiorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTallasNiñoInferiorEditLink}"/>
+                <br />
+                <h:commandLink action="#{tallasNiñoInferiorController.prepareCreate}" value="#{bundle.ViewTallasNiñoInferiorCreateLink}" />
+                <br />
+                <h:commandLink action="#{tallasNiñoInferiorController.prepareList}" value="#{bundle.ViewTallasNiñoInferiorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTallasNiñoInferiorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

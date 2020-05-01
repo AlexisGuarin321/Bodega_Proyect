@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTallasHombreSuperiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTallasHombreSuperiorLabel_idTallaHombreSuperior}"/>
+                    <h:outputText value="#{tallasHombreSuperiorController.selected.idTallaHombreSuperior}" title="#{bundle.ViewTallasHombreSuperiorTitle_idTallaHombreSuperior}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreSuperiorLabel_talla}"/>
+                    <h:outputText value="#{tallasHombreSuperiorController.selected.talla}" title="#{bundle.ViewTallasHombreSuperiorTitle_talla}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreSuperiorLabel_contornoPecho}"/>
+                    <h:outputText value="#{tallasHombreSuperiorController.selected.contornoPecho}" title="#{bundle.ViewTallasHombreSuperiorTitle_contornoPecho}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreSuperiorLabel_contornoCintura}"/>
+                    <h:outputText value="#{tallasHombreSuperiorController.selected.contornoCintura}" title="#{bundle.ViewTallasHombreSuperiorTitle_contornoCintura}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tallasHombreSuperiorController.destroyAndView}" value="#{bundle.ViewTallasHombreSuperiorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTallasHombreSuperiorEditLink}"/>
+                <br />
+                <h:commandLink action="#{tallasHombreSuperiorController.prepareCreate}" value="#{bundle.ViewTallasHombreSuperiorCreateLink}" />
+                <br />
+                <h:commandLink action="#{tallasHombreSuperiorController.prepareList}" value="#{bundle.ViewTallasHombreSuperiorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTallasHombreSuperiorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

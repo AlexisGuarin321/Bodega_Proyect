@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTallasNiñaSuperiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTallasNiñaSuperiorLabel_idTallaNiñaSuperior}" for="idTallaNiñaSuperior" />
+                    <h:inputText id="idTallaNiñaSuperior" value="#{tallasNiñaSuperiorController.selected.idTallaNiñaSuperior}" title="#{bundle.EditTallasNiñaSuperiorTitle_idTallaNiñaSuperior}" required="true" requiredMessage="#{bundle.EditTallasNiñaSuperiorRequiredMessage_idTallaNiñaSuperior}"/>
+                    <h:outputLabel value="#{bundle.EditTallasNiñaSuperiorLabel_talla}" for="talla" />
+                    <h:inputText id="talla" value="#{tallasNiñaSuperiorController.selected.talla}" title="#{bundle.EditTallasNiñaSuperiorTitle_talla}" required="true" requiredMessage="#{bundle.EditTallasNiñaSuperiorRequiredMessage_talla}"/>
+                    <h:outputLabel value="#{bundle.EditTallasNiñaSuperiorLabel_contornoPecho}" for="contornoPecho" />
+                    <h:inputText id="contornoPecho" value="#{tallasNiñaSuperiorController.selected.contornoPecho}" title="#{bundle.EditTallasNiñaSuperiorTitle_contornoPecho}" required="true" requiredMessage="#{bundle.EditTallasNiñaSuperiorRequiredMessage_contornoPecho}"/>
+                    <h:outputLabel value="#{bundle.EditTallasNiñaSuperiorLabel_contornoCintura}" for="contornoCintura" />
+                    <h:inputText id="contornoCintura" value="#{tallasNiñaSuperiorController.selected.contornoCintura}" title="#{bundle.EditTallasNiñaSuperiorTitle_contornoCintura}" required="true" requiredMessage="#{bundle.EditTallasNiñaSuperiorRequiredMessage_contornoCintura}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tallasNiñaSuperiorController.update}" value="#{bundle.EditTallasNiñaSuperiorSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTallasNiñaSuperiorViewLink}"/>
+                <br />
+                <h:commandLink action="#{tallasNiñaSuperiorController.prepareList}" value="#{bundle.EditTallasNiñaSuperiorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTallasNiñaSuperiorIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

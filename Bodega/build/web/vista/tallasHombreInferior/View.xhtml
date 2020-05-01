@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTallasHombreInferiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTallasHombreInferiorLabel_idTallaHombreInferior}"/>
+                    <h:outputText value="#{tallasHombreInferiorController.selected.idTallaHombreInferior}" title="#{bundle.ViewTallasHombreInferiorTitle_idTallaHombreInferior}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreInferiorLabel_tallaNumerica}"/>
+                    <h:outputText value="#{tallasHombreInferiorController.selected.tallaNumerica}" title="#{bundle.ViewTallasHombreInferiorTitle_tallaNumerica}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreInferiorLabel_contornoCintura}"/>
+                    <h:outputText value="#{tallasHombreInferiorController.selected.contornoCintura}" title="#{bundle.ViewTallasHombreInferiorTitle_contornoCintura}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreInferiorLabel_contornoCadera}"/>
+                    <h:outputText value="#{tallasHombreInferiorController.selected.contornoCadera}" title="#{bundle.ViewTallasHombreInferiorTitle_contornoCadera}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreInferiorLabel_muslo}"/>
+                    <h:outputText value="#{tallasHombreInferiorController.selected.muslo}" title="#{bundle.ViewTallasHombreInferiorTitle_muslo}"/>
+                    <h:outputText value="#{bundle.ViewTallasHombreInferiorLabel_idTalla}"/>
+                    <h:outputText value="#{tallasHombreInferiorController.selected.idTalla}" title="#{bundle.ViewTallasHombreInferiorTitle_idTalla}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tallasHombreInferiorController.destroyAndView}" value="#{bundle.ViewTallasHombreInferiorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTallasHombreInferiorEditLink}"/>
+                <br />
+                <h:commandLink action="#{tallasHombreInferiorController.prepareCreate}" value="#{bundle.ViewTallasHombreInferiorCreateLink}" />
+                <br />
+                <h:commandLink action="#{tallasHombreInferiorController.prepareList}" value="#{bundle.ViewTallasHombreInferiorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTallasHombreInferiorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

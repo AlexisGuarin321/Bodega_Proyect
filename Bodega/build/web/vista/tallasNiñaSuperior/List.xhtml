@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTallasNiñaSuperiorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTallasNiñaSuperiorEmpty}" rendered="#{tallasNiñaSuperiorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tallasNiñaSuperiorController.items.rowCount > 0}">
+                    <h:outputText value="#{tallasNiñaSuperiorController.pagination.pageFirstItem + 1}..#{tallasNiñaSuperiorController.pagination.pageLastItem + 1}/#{tallasNiñaSuperiorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tallasNiñaSuperiorController.previous}" value="#{bundle.Previous} #{tallasNiñaSuperiorController.pagination.pageSize}" rendered="#{tallasNiñaSuperiorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tallasNiñaSuperiorController.next}" value="#{bundle.Next} #{tallasNiñaSuperiorController.pagination.pageSize}" rendered="#{tallasNiñaSuperiorController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tallasNiñaSuperiorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTallasNiñaSuperiorTitle_idTallaNiñaSuperior}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTallaNiñaSuperior}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTallasNiñaSuperiorTitle_talla}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.talla}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTallasNiñaSuperiorTitle_contornoPecho}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contornoPecho}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTallasNiñaSuperiorTitle_contornoCintura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contornoCintura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tallasNiñaSuperiorController.prepareView}" value="#{bundle.ListTallasNiñaSuperiorViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tallasNiñaSuperiorController.prepareEdit}" value="#{bundle.ListTallasNiñaSuperiorEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tallasNiñaSuperiorController.destroy}" value="#{bundle.ListTallasNiñaSuperiorDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tallasNiñaSuperiorController.prepareCreate}" value="#{bundle.ListTallasNiñaSuperiorCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTallasNiñaSuperiorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

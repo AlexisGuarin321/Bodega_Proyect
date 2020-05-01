@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTallasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTallasLabel_idTalla}"/>
+                    <h:outputText value="#{tallasController.selected.idTalla}" title="#{bundle.ViewTallasTitle_idTalla}"/>
+                    <h:outputText value="#{bundle.ViewTallasLabel_tipo}"/>
+                    <h:outputText value="#{tallasController.selected.tipo}" title="#{bundle.ViewTallasTitle_tipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tallasController.destroyAndView}" value="#{bundle.ViewTallasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTallasEditLink}"/>
+                <br />
+                <h:commandLink action="#{tallasController.prepareCreate}" value="#{bundle.ViewTallasCreateLink}" />
+                <br />
+                <h:commandLink action="#{tallasController.prepareList}" value="#{bundle.ViewTallasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTallasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
