@@ -3,64 +3,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle}"></h:outputText>
+            <h:outputText value="#{bundle.AppName}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListTallasNiñoSuperiorEmpty}" rendered="#{tallasNiñoSuperiorController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{tallasNiñoSuperiorController.items.rowCount > 0}">
-                    <h:outputText value="#{tallasNiñoSuperiorController.pagination.pageFirstItem + 1}..#{tallasNiñoSuperiorController.pagination.pageLastItem + 1}/#{tallasNiñoSuperiorController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{tallasNiñoSuperiorController.previous}" value="#{bundle.Previous} #{tallasNiñoSuperiorController.pagination.pageSize}" rendered="#{tallasNiñoSuperiorController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{tallasNiñoSuperiorController.next}" value="#{bundle.Next} #{tallasNiñoSuperiorController.pagination.pageSize}" rendered="#{tallasNiñoSuperiorController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{tallasNiñoSuperiorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_idTallaNiñoSuperior}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTallaNiñoSuperior}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_talla}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.talla}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_contornoPecho}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.contornoPecho}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_contornoCintura}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.contornoCintura}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{tallasNiñoSuperiorController.prepareView}" value="#{bundle.ListTallasNiñoSuperiorViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tallasNiñoSuperiorController.prepareEdit}" value="#{bundle.ListTallasNiñoSuperiorEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tallasNiñoSuperiorController.destroy}" value="#{bundle.ListTallasNiñoSuperiorDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{tallasNiñoSuperiorController.prepareCreate}" value="#{bundle.ListTallasNiñoSuperiorCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTallasNiñoSuperiorIndexLink}"/>
+            <h:form>
+                <div align="center">
+                    <div class="container text-center">   
+                        <div class="row">
+                            <div class="col-sm-3 well">
+                                <p:panel header="#{bundle.ListTallasNiñoSuperiorTitle_tabla}">
+                                    <div align="center">
+                                        <p:dataTable id="lalmeida"  reflow="true" value="#{tallasNiñoSuperiorController.items}" var="item" emptyMessage=" " selectionMode="single"  paginator="true"  rowKey="#{item.idTallaNiñoSuperior}" rows="20"  rowsPerPageTemplate="20,50,100">
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_idTallaNiñoSuperior}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.idTallaNiñoSuperior}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_talla}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.talla}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_contornoPecho}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.contornoPecho}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListTallasNiñoSuperiorTitle_contornoCintura}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.contornoCintura}"/>
+                                            </p:column>
+
+
+                                            <f:facet name="footer">
+                                                <div align="center">
+                                                    <p:commandButton style="max-width: 200px;" id="editButtonR"   icon="ui-icon-pencil" process="@all" styleClass="button" ajax="false" action="#{tallasNiñoSuperiorController.prepareCreate}" value="#{bundle.ListTallasNiñoSuperiorCreateLink}"/>
+                                                </div>
+                                            </f:facet>
+                                            <f:facet name="header">
+                                                <div align="center">
+                                                    <p:commandButton style="max-width: 200px;" id="editButtonRe"   icon="ui-icon-pencil" process="@all" styleClass="button" ajax="false" action="#{tallasNiñoSuperiorController.prepareCreate}" value="#{bundle.ListTallasNiñoSuperiorCreateLink}"/>
+                                                </div>
+                                            </f:facet>
+                                        </p:dataTable>
+                                    </div>
+                                </p:panel>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
