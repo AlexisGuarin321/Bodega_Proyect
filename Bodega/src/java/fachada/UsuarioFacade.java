@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fachada;
 
 import Modelo.Usuario;
@@ -30,7 +25,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
-    public Usuario validarUsuario(int idUsuario, String password) {
+    public Usuario validarUsuario(Integer idUsuario, String password) {
         Usuario aux = null;
         try {
             Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.idUsuario = ?1 AND u.password=?2", Usuario.class).setParameter(1, idUsuario).setParameter(2, password);
