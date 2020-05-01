@@ -32,7 +32,51 @@
                 hourText: 'Hora',
                 minuteText: 'Minuto',
                 secondText: 'Segundo',
-                currentText: 'Fecha actual',
+                currentText: 'Fecha actual',<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+        <h1><?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+        <h1>
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p>
+    </h:body>
+
+</html>
+
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p>
+    </h:body>
+
+</html>
+
                 ampm: false,
                 month: 'Mes',
                 week: 'Semana',
@@ -108,7 +152,7 @@
         <p:growl id="growl" life="3000" />
 
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="25" header="#{bundle.AppName} #{usuarioController.selected.nombreUsuario}">
+            <p:layoutUnit position="north" size="25" header="#{bundle.AppName} #{usuarioController.selected.nombre}">
 
             </p:layoutUnit>
 
@@ -122,7 +166,7 @@
                         <h:outputLabel title="CIES" style="font-family: Arial ; font-size: 8px" value="ՠCIES"/>
                     </h:panelGroup>
                     <h:panelGroup style="width: 25%; text-align:right; vertical-align: middle; "  >
-                        <h:outputLabel title="Usuario Logeado " style="font-family: Arial ; font-size: 10px" value="#{usuarioController.selected.nombreUsuario}"/>
+                        <h:outputLabel title="Usuario Logeado " style="font-family: Arial ; font-size: 10px" value="#{usuarioController.selected.nombre}"/>
                     </h:panelGroup>  
                 </p:panelGrid>
             </p:layoutUnit>
@@ -132,13 +176,34 @@
                     <div align="center">
                         <p:panelGrid columns="8">
                             <p:menubar>                                
-                                <p:submenu label="Manual">
-                                    <p:menuitem ajax="false" action="/vista/Manual/Ingreso.xhtml" value="Ingreso al Sistema"> </p:menuitem>
-                                    
+                                <p:submenu label="Datos de recidencia">
+                                    <p:menuitem ajax="false" action="/vista/ciudad/List.xhtml" value="#{bundle.ListCiudadTitle_ciudad}"> </p:menuitem>
+                                    <p:menuitem ajax="false" action="/vista/departamento/List.xhtml" value="#{bundle.NameDepartamentos}"> </p:menuitem>
                                 </p:submenu>   
-
-                                
-                                <p:menuitem value="#{bundle.Home}"  icon="ui-icon-power" action="/index?faces-redirect=true" />
+                                <p:submenu label="Productos">
+                                    <p:menuitem ajax="false" action="/vista/productoentregado/List.xhtml" value="#{bundle.MenuItemProductoEntregado}"> </p:menuitem>
+                                    <p:menuitem ajax="false" action="/vista/productosrecibidos/List.xhtml" value="#{bundle.MenuItemProductosRecibidos}"> </p:menuitem>
+                                    <p:menuitem ajax="false" action="/vista/producto/List.xhtml" value="#{bundle.MenuItemProductos}"> </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="Tallas">
+                                    <p:submenu label="Hombre">
+                                        <p:menuitem ajax="false" action="/vista/tallasHombreSuerior/List.xhtml" value="#{bundle.MenuItemTallasHombreSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasHombreInferior/List.xhtml" value="#{bundle.MenuItemTallasHombreInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                    <p:submenu label="Mujer">
+                                        <p:menuitem ajax="false" action="/vista/tallasMujerSuperior/List.xhtml" value="#{bundle.MenuItemTallasMujerSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasMujerInferior/List.xhtml" value="#{bundle.MenuItemTallasMujerInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                    <p:submenu label="Niño">
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñoSuperior/List.xhtml" value="#{bundle.MenuItemTallasNiñoSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñoInferior/List.xhtml" value="#{bundle.MenuItemTallasNiñoInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                    <p:submenu label="Niña">
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñaSuperior/List.xhtml" value="#{bundle.MenuItemTallasNiñaSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñaInferior/List.xhtml" value="#{bundle.MenuItemTallasNiñaInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                </p:submenu>
+                                <p:menuitem value="#{bundle.MenuItemHome}"  icon="ui-icon-power" action="/index?faces-redirect=true" />
                             </p:menubar>
                         </p:panelGrid>
                     </div>
