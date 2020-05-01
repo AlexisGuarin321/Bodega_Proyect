@@ -19,18 +19,18 @@
                                 <p:panel header="#{bundle.ListProductoTitle_table}">
                                     <div align="center">
                                         <p:dataTable id="lalmeida"  reflow="true" value="#{productoController.items}" var="item" emptyMessage=" " selectionMode="single"  paginator="true"  rowKey="#{item.idProducto}" rows="20"  rowsPerPageTemplate="20,50,100">
-                                            <h:column>
+                                            <p:column>
                                                 <f:facet name="header">
                                                     <h:outputText value="#{bundle.ListProductoTitle_idProducto}"/>
                                                 </f:facet>
                                                 <h:outputText value="#{item.idProducto}"/>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">
                                                     <h:outputText value="#{bundle.ListProductoTitle_nombre}"/>
                                                 </f:facet>
                                                 <h:outputText value="#{item.nombre}"/>
-                                            </h:column>
+                                            </p:column>
 
 
                                             <f:facet name="footer">
