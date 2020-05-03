@@ -1,6 +1,6 @@
 package controlador;
 
-import Modelo.Usuario;
+import modelo.Usuario;
 import controlador.util.JsfUtil;
 import controlador.util.PaginationHelper;
 import fachada.UsuarioFacade;
@@ -232,12 +232,37 @@ public class UsuarioController implements Serializable {
 
     }
 
+    public Usuario getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Usuario current) {
+        this.current = current;
+    }
+
+    public UsuarioFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(UsuarioFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public int getSelectedItemIndex() {
+        return selectedItemIndex;
+    }
+
+    public void setSelectedItemIndex(int selectedItemIndex) {
+        this.selectedItemIndex = selectedItemIndex;
+    }
+    
+    
     //---- Se crea este metodo para la validación de los datos del usuario --//
     public String validarUsuario() {
-        Integer idUsuario = current.getIdUsuario();
-        String password = current.getPassword();
+        String codigoUsuario = current.getUsuario();
+        String clave = current.getPassword();
         try {
-            current = ejbFacade.validarUsuario(idUsuario, password);
+            current = ejbFacade.validarUsuario(codigoUsuario, clave);
         } finally {
             if (current == null) {
                 current = new Usuario();
@@ -245,7 +270,11 @@ public class UsuarioController implements Serializable {
                 return null;
             }
             JsfUtil.addSuccessMessage("Bienvenid@ " + current.getNombre());
-            return "/vista/ciudad/List.xhtml";
+            return "/vista/productosresibidos/List.xhtml";
         }
     }
+    
+    
+    
+
 }

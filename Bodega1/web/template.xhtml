@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">BIBLIOTECA</ui:insert></title>
+        <link rel="shortcut icon" href="#{request.contextPath}/ICONO.ico" />
+        <link rel="icon" href="#{request.contextPath}/ICONO.ico" /> 
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+
+        <script type="text/javascript">
+            PrimeFaces.locales['es'] = {
+            closeText: 'Cerrar',
+                    prevText: 'Anterior',
+                    nextText: 'Siguiente',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi?oles', 'Jueves', 'Viernes', 'S?do'],
+                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+                    weekHeader: 'Semana',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    timeOnlyTitle: 'S??hora',
+                    timeText: 'Tiempo',
+                    hourText: 'Hora',
+                    minuteText: 'Minuto',
+                    secondText: 'Segundo',
+                    currentText: 'Fecha actual',
+                    ampm: false,
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'D?,
+                    allDayText: 'Todo el d?
+            };
+        </script>     
+        <style type="text/css">
+            label, td { font-family: Arial,Verdana,sans-serif; font-size: 11px;}
+            select { font-family: Arial,Verdana,sans-serif; font-size: 11px; }
+            th{font-size: 11px}
+
+
+        </style>
+        <style type="text/css">
+            label, td { font-family: Arial,Verdana,sans-serif; font-size: 11px;}
+            select { font-family: Arial,Verdana,sans-serif; font-size: 11px; }
+            th{font-size: 11px}
+
+
+        </style>
+        <style type="text/css">
+            .cancelado {
+                background-color: #FFFF00 !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+
+            .pendiente {
+                background-color: #CEF6E3 !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+            .finalizada {
+                background-color: #ffffff !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+            .fuera {
+                background-color: #ff1a1a !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+            .menorigual10{ height: 20px; background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(255,102,205,170)); } 
+            .vencidas{ height: 20px; background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(255,0,0,1)); } 
+            .respuestaTarea{ height: 20px; background-image: linear-gradient(to right, rgba(255,0,1,0), rgba(255,255,51)); } 
+            .respuestaTarea1 {
+                background-color: #FFFF00 !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+            .igual10mayor5{
+                background-color: #FFFF00 !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+            .menor5{
+                background-color: #ff1a1a !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+            .diferente {
+                background-color: #ffffff !important;
+                background-image: none !important;
+                color: #000000 !important;
+            }
+
+        </style>
+
+    </h:head>
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="25" header="#{bundle.AppName} #{usuarioController.selected.nombre}">
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="40">
+                <ui:insert name="footer"/>
+                <p:panelGrid columns="4"  >
+                    <h:panelGroup styleClass="copyright" style="width: 75%; text-align:center; vertical-align: middle; " >
+                        <h:outputLabel value="cies 2020" title="CIES" />   <a href="http://www.cies.edu.co">CIES</a>.
+                    </h:panelGroup>
+                    <h:panelGroup styleClass="copyright" style="width: 75%; text-align:center; vertical-align: middle; " >
+                        <h:outputLabel title="CIES" style="font-family: Arial ; font-size: 8px" value="?CIES"/>
+                    </h:panelGroup>
+                    <h:panelGroup style="width: 25%; text-align:right; vertical-align: middle; "  >
+                        <h:outputLabel title="Usuario Logeado " style="font-family: Arial ; font-size: 10px" value="#{usuarioController.selected.nombre}"/>
+                    </h:panelGroup>  
+                </p:panelGrid>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <h:form id="menuForm">
+                    <div align="center">
+                        <p:panelGrid columns="8">
+                            <p:menubar>   
+                                <p:menubar>                                
+                                <p:submenu label="Datos de recidencia">
+                                    <p:menuitem ajax="false" action="/vista/ciudad/List.xhtml" value="#{bundle.ListCiudadTitle_ciudad}"> </p:menuitem>
+                                    <p:menuitem ajax="false" action="/vista/departamento/List.xhtml" value="#{bundle.NameDepartamentos}"> </p:menuitem>
+                                </p:submenu>   
+                                <p:submenu label="Productos">
+                                    <p:menuitem ajax="false" action="/vista/productoentregado/List.xhtml" value="#{bundle.MenuItemProductoEntregado}"> </p:menuitem>
+                                    <p:menuitem ajax="false" action="/vista/productosrecibidos/List.xhtml" value="#{bundle.MenuItemProductosRecibidos}"> </p:menuitem>
+                                    <p:menuitem ajax="false" action="/vista/producto/List.xhtml" value="#{bundle.MenuItemProductos}"> </p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="Tallas">
+                                    <p:submenu label="Hombre">
+                                        <p:menuitem ajax="false" action="/vista/tallasHombreSuerior/List.xhtml" value="#{bundle.MenuItemTallasHombreSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasHombreInferior/List.xhtml" value="#{bundle.MenuItemTallasHombreInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                    <p:submenu label="Mujer">
+                                        <p:menuitem ajax="false" action="/vista/tallasMujerSuperior/List.xhtml" value="#{bundle.MenuItemTallasMujerSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasMujerInferior/List.xhtml" value="#{bundle.MenuItemTallasMujerInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                    <p:submenu label="Niño">
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñoSuperior/List.xhtml" value="#{bundle.MenuItemTallasNiñoSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñoInferior/List.xhtml" value="#{bundle.MenuItemTallasNiñoInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                    <p:submenu label="Niña">
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñaSuperior/List.xhtml" value="#{bundle.MenuItemTallasNiñaSuperior}"> </p:menuitem>
+                                        <p:menuitem ajax="false" action="/vista/tallasNiñaInferior/List.xhtml" value="#{bundle.MenuItemTallasNiñaInferior}"> </p:menuitem>
+                                    </p:submenu>
+                                </p:submenu>
+
+
+                                <p:menuitem value="#{bundle.Home}"  icon="ui-icon-power" action="/index?faces-redirect=true" />
+                            </p:menubar>
+                        </p:panelGrid>
+                    </div>
+                </h:form>
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

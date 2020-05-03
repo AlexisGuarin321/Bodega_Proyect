@@ -54,7 +54,7 @@
                                 <h:panelGroup >
                                     <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-4"  styleClass="ui-panelgrid-blank">
                                         <p:outputLabel style=" font-size: 18px; padding: 20; color: #610C74;" value="Usuario:" />
-                                        <p:inputText style=" font-size: 15px; border-radius: 10px; height: 30px; min-width: 200px;" placeholder="Usuario" value="#{usuarioController.selected.idUsuario}"
+                                        <p:inputText style=" font-size: 15px; border-radius: 10px; height: 30px; min-width: 200px;" placeholder="Usuario" value="#{usuarioController.selected.usuario}"
                                                      required="true" requiredMessage="Debe ingresar un usuario">
                                         </p:inputText>
                                         <p:outputLabel style=" font-size: 18px;color: #610C74;" value="Contraseña:"/>
@@ -68,16 +68,7 @@
                                         <p:commandButton style=" font-size: 18px; color: #ffffff; max-width: 40%; border-radius: 20px; background: linear-gradient(#610C74,#610C74); opacity: 0.8, 0.2; " id="createButton"  ajax="false" update="usuario, clave, growl" action="#{usuarioController.validarUsuario}" value="Ingresar" />
                                     </div>
                                 </h:panelGroup>
-                                <f:facet name="footer">
-                                    <div align="center">
-                                        <h:panelGrid columns="1">
-                                            <div align="center">
-                                                <p:commandButton style=" font-size: 18px;" id="createButtonBo" icon="ui-icon-locked" ajax="false" update="usuario, clave, growl" action="#{usuarioController.validarUsuario}" value="Ingresar" />
-                                            </div>
-                                        </h:panelGrid>
-                                    </div>
-                                </f:facet>
-
+                                
 
                             </div>
                         </h:panelGroup>

@@ -1,9 +1,9 @@
 package controlador;
 
-import Modelo.Usuario;
+import modelo.Productoentregado;
 import controlador.util.JsfUtil;
 import controlador.util.PaginationHelper;
-import fachada.UsuarioFacade;
+import fachada.ProductoentregadoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("usuarioController")
+@Named("productoentregadoController")
 @SessionScoped
-public class UsuarioController implements Serializable {
+public class ProductoentregadoController implements Serializable {
 
-    private Usuario current;
+    private Productoentregado current;
     private DataModel items = null;
     @EJB
-    private fachada.UsuarioFacade ejbFacade;
+    private fachada.ProductoentregadoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public UsuarioController() {
+    public ProductoentregadoController() {
     }
 
-    public Usuario getSelected() {
+    public Productoentregado getSelected() {
         if (current == null) {
-            current = new Usuario();
+            current = new Productoentregado();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private UsuarioFacade getFacade() {
+    private ProductoentregadoFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +68,13 @@ public class UsuarioController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Usuario) getItems().getRowData();
+        current = (Productoentregado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Usuario();
+        current = new Productoentregado();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +82,7 @@ public class UsuarioController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProductoentregadoCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +91,7 @@ public class UsuarioController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Usuario) getItems().getRowData();
+        current = (Productoentregado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +99,7 @@ public class UsuarioController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProductoentregadoUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +108,7 @@ public class UsuarioController implements Serializable {
     }
 
     public String destroy() {
-        current = (Usuario) getItems().getRowData();
+        current = (Productoentregado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +132,7 @@ public class UsuarioController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProductoentregadoDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -188,21 +188,21 @@ public class UsuarioController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Usuario getUsuario(java.lang.Integer id) {
+    public Productoentregado getProductoentregado(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Usuario.class)
-    public static class UsuarioControllerConverter implements Converter {
+    @FacesConverter(forClass = Productoentregado.class)
+    public static class ProductoentregadoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UsuarioController controller = (UsuarioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "usuarioController");
-            return controller.getUsuario(getKey(value));
+            ProductoentregadoController controller = (ProductoentregadoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "productoentregadoController");
+            return controller.getProductoentregado(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -222,30 +222,14 @@ public class UsuarioController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Usuario) {
-                Usuario o = (Usuario) object;
-                return getStringKey(o.getIdUsuario());
+            if (object instanceof Productoentregado) {
+                Productoentregado o = (Productoentregado) object;
+                return getStringKey(o.getIdProductoEntregado());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuario.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Productoentregado.class.getName());
             }
         }
 
     }
 
-    //---- Se crea este metodo para la validación de los datos del usuario --//
-    public String validarUsuario() {
-        Integer idUsuario = current.getIdUsuario();
-        String password = current.getPassword();
-        try {
-            current = ejbFacade.validarUsuario(idUsuario, password);
-        } finally {
-            if (current == null) {
-                current = new Usuario();
-                JsfUtil.addErrorMessage("Usuario y/o Clave Invalida");
-                return null;
-            }
-            JsfUtil.addSuccessMessage("Bienvenid@ " + current.getNombre());
-            return "/vista/ciudad/List.xhtml";
-        }
-    }
 }
