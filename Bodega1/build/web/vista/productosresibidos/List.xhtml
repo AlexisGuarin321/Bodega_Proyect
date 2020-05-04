@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductosresibidosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProductosresibidosEmpty}" rendered="#{productosresibidosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{productosresibidosController.items.rowCount > 0}">
+                    <h:outputText value="#{productosresibidosController.pagination.pageFirstItem + 1}..#{productosresibidosController.pagination.pageLastItem + 1}/#{productosresibidosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productosresibidosController.previous}" value="#{bundle.Previous} #{productosresibidosController.pagination.pageSize}" rendered="#{productosresibidosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productosresibidosController.next}" value="#{bundle.Next} #{productosresibidosController.pagination.pageSize}" rendered="#{productosresibidosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productosresibidosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_idProductoResibido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProductoResibido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_fechaResivido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaResivido}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_ref}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ref}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_valorUnidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorUnidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_valorTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_idProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_idProvedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProvedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_idTalla}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTalla}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosresibidosTitle_idTipoProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productosresibidosController.prepareView}" value="#{bundle.ListProductosresibidosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productosresibidosController.prepareEdit}" value="#{bundle.ListProductosresibidosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productosresibidosController.destroy}" value="#{bundle.ListProductosresibidosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{productosresibidosController.prepareCreate}" value="#{bundle.ListProductosresibidosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProductosresibidosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

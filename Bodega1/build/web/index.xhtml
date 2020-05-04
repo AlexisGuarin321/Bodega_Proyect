@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view contentType="text/html">
+        
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta http-equiv="expires" content="-1"/>
+            <meta name="Robots" content="nofollow" />
+            <title><ui:insert name="title">"#{bundle.AppName}"</ui:insert></title>
+            <link rel="shortcut icon" href="#{request.contextPath}/ICONO.ico" />
+            <link rel="icon" href="#{request.contextPath}/ICONO.ico" /> 
+            <link type="text/css" rel="stylesheet" href="Bodega.css" />
+        </h:head>
+
+        <h:body> 
+            <h:form>
+                <script type="text/javascript">
+                    function formReset()
+                    {
+                        document.getElementById("myForm").reset();
+                    }
+                </script>
+            </h:form>
+            
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                    <img ></img>
+                </div>
+            </div>  
+            
+            <div class="header1" align="center" style="color: white; font-size: 30px"><h1>Bienvenido</h1></div>  
+            <br></br>
+            
+            <div class="header2" align="center" style="color: white; font-size: 20px"><h2>Inicie Sesión</h2></div>
+            <br></br>
+            <br></br>
+
+            <div class="contenedorlogin">
+
+                <h:form id="index" 
+                        style="border-radius: 20px; margin: auto; width: 45%;opacity: 90%; max-width: 400px; max-height: 150px;
+                        background: #F3F3F3;
+                        padding: 30px;
+                        border: 1px solid rgba(0,0,0,0.2); " >
+                    <div align="center">
+                        <h:panelGroup >
+                            <div class="ui-fluid" align="center">
+                                <h:panelGroup >
+                                    <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-4"  styleClass="ui-panelgrid-blank">
+                                        <p:outputLabel style=" font-size: 18px; padding: 20; color: #610C74;" value="Usuario:" />
+                                        <p:inputText style=" font-size: 15px; border-radius: 10px; height: 30px; min-width: 200px;" placeholder="Usuario" value="#{usuarioController.selected.usuario}"
+                                                     required="true" requiredMessage="Debe ingresar un usuario">
+                                        </p:inputText>
+                                        <p:outputLabel style=" font-size: 18px;color: #610C74;" value="Contraseña:"/>
+                                        <p:password style=" font-size: 15px; border-radius: 10px; height: 30px; min-width: 200px;" placeholder="Contraseña" value="#{usuarioController.selected.password}" redisplay="false" autocomplete="false"
+                                                    required="true" requiredMessage="Debe ingresar una clave"/>
+
+                                        <p:growl id="growl" life="300" />
+                                    </p:panelGrid>
+                                    <br/>
+                                    <div align="center">
+                                        <p:commandButton style=" font-size: 18px; color: #ffffff; max-width: 40%; border-radius: 20px; background: linear-gradient(#610C74,#610C74); opacity: 0.8, 0.2; " id="createButton"  ajax="false" update="usuario, clave, growl" action="#{usuarioController.validarUsuario}" value="Ingresar" />
+                                    </div>
+                                </h:panelGroup>
+                                
+
+                            </div>
+                        </h:panelGroup>
+
+                        <br/><br/>
+                    </div>         
+                    <br/><br/>
+                </h:form>
+            </div>
+
+            <div class="ui-g-12 footer">© 2020 Jhonyer Guarin</div>
+
+        </h:body>
+    </f:view>
+</html>
